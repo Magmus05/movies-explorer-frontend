@@ -1,0 +1,52 @@
+.inputFormForProfile {
+  display: flex;
+  border-bottom: 1px solid #424242;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: normal;
+  flex-wrap: wrap;
+}
+.inputFormForProfile__title {
+  height: 14px;
+  margin: 0;
+}
+.inputFormForProfile__input {
+  all: unset;
+  text-align: right;
+  flex: 0 1 85%;
+  height: 14px;
+  cursor: pointer;
+}
+.inputFormForProfile__span-error {
+  display: block;
+  margin: 6px 0 0;
+  padding: 0;
+  min-height: 12px;
+  color: #ee3465;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: normal;
+  flex: 0 1 100%;
+  text-align: right;
+}
+.inputFormForProfile:nth-child(3) {
+  border-bottom: none;
+  margin: 17px 0 0 0;
+}
+.inputFormForProfile__input:hover {
+  opacity: 0.7;
+}
+.inputFormForProfile__input:focus {
+  box-shadow: inset -1px -1px 5px 1px rgba(155, 155, 155, 0.5);
+}
+@media screen and (max-width: 1279px) {
+
+}
+@media screen and (max-width: 767px) {
+  .inputFormForProfile__span-error {
+    margin: 2px 0 0;
+    min-height: 10px;
+
+  }
+}

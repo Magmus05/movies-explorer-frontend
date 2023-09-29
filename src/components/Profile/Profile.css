@@ -1,0 +1,64 @@
+.form-profile {
+  width: 410px;
+  margin: 74px auto 0;
+}
+.form-profile__name-user {
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0 0 123px 0;
+}
+.form-profile__button {
+  all: unset;
+  width: 100%;
+  margin: 202px 0 0;
+	cursor: pointer;
+}
+.form-profile__button-out {
+  all: unset;
+  width: 100%;
+  color: #ee3465;
+  font-weight: 500;
+  margin: 16px 0 0;
+	cursor: pointer;
+}
+.form-profile__button-out,
+.form-profile__button,
+.form-profile__name-user {
+  text-align: center;
+  line-height: normal;
+}
+.form-profile__button-out:hover, .form-profile__button:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 1279px) {
+  .form-profile {
+    margin: 236px auto 0;
+  }
+  .form-profile__name-user {
+    margin: 0 0 96px 0;
+  }
+  .form-profile__button {
+    margin: 192px 0 0;
+  }
+}
+@media screen and (max-width: 767px) {
+  .form-profile {
+    margin: 74px auto 0;
+  }
+  .form-profile__name-user {
+    margin: 0 0 80px 0;
+  }
+  .form-profile__button {
+    margin: 361px 0 0;
+    font-size: 12px;
+  }
+  .form-profile__button-out{
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 470px) {
+  .form-profile {
+    width: 260px;
+  }
+}

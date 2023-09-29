@@ -1,0 +1,127 @@
+.aboutMe {
+  overflow: auto;
+  box-sizing: border-box;
+}
+.aboutMe__title {
+  margin: 110px 0 66px;
+  padding-bottom: 23px;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+  border-bottom: 1px solid #dadada;
+}
+.aboutMe__info-block {
+  display: flex;
+  justify-content: space-between;
+}
+.aboutMe__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.aboutMe__name {
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 58px; /* 116% */
+  letter-spacing: -2px;
+}
+.aboutMe__profession {
+  margin: 18px 0 26px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px; /* 111.111% */
+}
+.aboutMe__historu {
+  max-width: 600px;
+  font-size: 14px;
+  line-height: 22px; /* 157.143% */
+  flex-basis: 80%;
+}
+.aboutMe__link {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+.aboutMe__link:hover {
+  opacity: 0.7;
+}
+.aboutMe__image {
+  width: 270px;
+  height: 327px;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 1279px) {
+  .aboutMe__title {
+    margin: 90px 0 66px;
+  }
+  .aboutMe__name {
+    font-size: 40px;
+    line-height: 40px; /* 100% */
+    letter-spacing: -1.6px;
+  }
+  .aboutMe__profession {
+    margin: 16px 0 20px;
+    font-size: 12px;
+    line-height: 18px; /* 150% */
+  }
+  .aboutMe__historu {
+    max-width: 364px;
+    font-size: 12px;
+    line-height: 18px; /* 150% */
+  }
+  .aboutMe__image {
+    width: 255px;
+    height: 307px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .aboutMe__title {
+    margin: 70px 0 60px;
+    padding-bottom: 28px;
+  }
+  .aboutMe__image {
+    width: 292px;
+    height: 352px;
+  }
+
+  .aboutMe__info {
+    margin: 0 10px 0 0;
+  }
+  .aboutMe__name {
+    font-size: 30px;
+    line-height: normal;
+    letter-spacing: -1.2px;
+  }
+  .aboutMe__profession {
+    margin: 20px 0 20px;
+    font-size: 11px;
+    line-height: 16px; /* 145.455% */
+  }
+
+  .aboutMe__historu {
+    max-width: 292px;
+    font-size: 11px;
+    line-height: 16px; /* 145.455% */
+  }
+  .aboutMe__link {
+    margin: 40px 0 0;
+  }
+}
+@media screen and (max-width: 520px) {
+  .aboutMe__info-block {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .aboutMe__info {
+    margin: 40px 0 0 0;
+  }
+  .aboutMe {
+    margin: 0 14px;
+  }
+}

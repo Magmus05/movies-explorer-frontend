@@ -1,0 +1,51 @@
+.buttonForForm {
+  all: unset;
+  width: 396px;
+  height: 45px;
+  border-radius: 3px;
+  background: #4285f4;
+  text-align: center;
+}
+.buttonForForm__question {
+  text-align: center;
+  color: #8b8b8b;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  margin: 16px 0 0 ;
+}
+.buttonForForm__link {
+  color: #4285f4;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0 0 0 6px;
+}
+.buttonForForm:hover, .buttonForForm__link:hover  {
+	opacity: 0.7;
+}
+.buttonForForm_login{
+  margin-top: 159px;
+}
+.buttonForForm_register{
+  margin-top: 49px;
+}
+@media screen and (max-width: 767px) {
+  .buttonForForm {
+    width: 260px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .buttonForForm__question {
+    margin: 14px 0 0 ;
+  }
+  .buttonForForm__question, .buttonForForm__link {
+    font-size: 12px;
+  }
+  .buttonForForm_register{
+    margin-top: 137px;
+  }
+  .buttonForForm_login{
+    margin-top: 247px;
+  }
+}
