@@ -16,11 +16,20 @@
   letter-spacing: -2px;
 }
 
+@media screen and (max-width: 1279px) {
+  .promo {
+    height: 784px;
+  }
+  .promo__title {
+    margin: 325px auto 0;
+  }
+}
 
 @media screen and (max-width: 660px) {
   .promo {
     background-size: 400px;
     height: 570px;
+    background-position: 50% 44%;
   }
   .promo__title {
     margin: 207px auto 0;
@@ -35,7 +44,7 @@
     background-size: 290px;
   }
   .promo__title {
-    margin: 227px auto 0;
+    margin: 210px auto 0;
     max-width: 410px;
     font-size: 35px;
     line-height: 35px; /* 125.806% */
@@ -46,6 +55,7 @@
     background-size: 270px;
   }
   .promo__title {
+    margin: 205px auto 0;
     width: 300px;
     font-size: 31px;
     line-height: 39px; /* 125.806% */

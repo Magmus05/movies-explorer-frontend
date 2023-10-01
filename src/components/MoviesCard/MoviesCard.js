@@ -4,10 +4,10 @@ import "./MoviesCard.css";
 function MoviesCard({film}) {
   return (
       <article className="moviesCard">
-        <img src={`https://api.nomoreparties.co${film.image.url}`} className="moviesCard__image" alt="" />
+        <img src={`https://api.nomoreparties.co${film.image.url}`} className="moviesCard__image" alt={`Фильм: ${film.nameRU}`} />
         <div className="moviesCard__info">
           <h2 className="moviesCard__title overflow-text">{film.nameRU}</h2>
-          <div className="moviesCard__like"></div>
+          <button type="button" className="moviesCard__like"></button>
         </div>
         <p className="moviesCard__timeline">{Math.floor(film.duration/60)}ч {film.duration%60}м</p>
       </article>

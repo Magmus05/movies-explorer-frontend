@@ -9,21 +9,19 @@ function Login() {
     <>
       <HeaderForRegAndLogin title={"Рады видеть!"}></HeaderForRegAndLogin>
       <main>
-        <form className="form-login">
-          <InputForm type="email" name="email" title="E-mail" />
-          <InputForm
-            type="password"
-            name="password"
-            title="Пароль"
-            error="Что-то пошло не так...cccccccccccccccccccc"
-          />
-          <ButtonForForm
-            buttonText={"Войти"}
-            buttonQuestionText={"Ещё не зарегистрированы?"}
-            buttonLinkText={"Регистрация"}
-            marginTop={"buttonForForm_login"}
-          />
-        </form>
+        <section>
+          <form className="form-login">
+            <InputForm type="email" name="email" title="E-mail" />
+            <InputForm type="password" name="password" title="Пароль" />
+            <ButtonForForm
+              buttonText={"Войти"}
+              buttonQuestionText={"Ещё не зарегистрированы?"}
+              buttonLinkText={"Регистрация"}
+              marginTop={"buttonForForm_login"}
+              link={"/signup"}
+            />
+          </form>
+        </section>
       </main>
     </>
   );

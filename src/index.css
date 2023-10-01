@@ -10,15 +10,19 @@
   background-color: #202020;
   color: #fff;
   min-height: 100%;
-  box-sizing: border-box;
   position: relative;
+}
+#root{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .container {
   max-width: 1140px;
   margin: 0 auto;
 }
-@media screen and (max-width: 1279px) {
+@media screen and (max-width: 1240px) {
   .container {
     margin: 0 50px;
   }
@@ -29,17 +33,3 @@
   }
 }
 
-.container-movies {
-  max-width: 1140px;
-  margin: 0 auto;
-}
-@media screen and (max-width: 1279px) {
-  .container-movies {
-    margin: 0 30px;
-  }
-}
-@media screen and (max-width: 767px) {
-  .container-movies {
-    margin: 0 14px;
-  }
-}
