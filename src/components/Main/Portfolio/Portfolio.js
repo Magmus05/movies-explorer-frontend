@@ -5,7 +5,7 @@ function Portfolio() {
   return (
     <section className="portfolio container" id="AboutMe">
       <ul className="portfolio__list">
-        <h1 className="portfolio__title">Портфолио</h1>
+        <h2 className="portfolio__title">Портфолио</h2>
         <a
           className="portfolio__block"
           href="https://magmus05.github.io/russian-travel/"

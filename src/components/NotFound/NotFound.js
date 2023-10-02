@@ -10,7 +10,7 @@ function goBack(){
 		<main>
 		<h1 className="notfound-error">404</h1>
 		<p className="notfound-message">Страница не найдена</p>
-		<button onClick={goBack} className="notfound-link">Назад</button>
+		<button type="button" onClick={goBack} className="notfound-link">Назад</button>
 		</main>
 	)
 
