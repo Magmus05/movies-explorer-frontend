@@ -7,11 +7,11 @@ function goBack(){
 	navigate(-1)
 }
 	return(
-		<>
-		<h2 className="notfound__error">404</h2>
-		<p className="notfound__message">Страница не найдена</p>
-		<button onClick={goBack} className="notfound__link">Назад</button>
-		</>
+		<main>
+		<h1 className="notfound-error">404</h1>
+		<p className="notfound-message">Страница не найдена</p>
+		<button type="button" onClick={goBack} className="notfound-link">Назад</button>
+		</main>
 	)
 
 }

@@ -7,24 +7,27 @@ import HeaderForRegAndLogin from "../HeaderForRegAndLogin/HeaderForRegAndLogin";
 function Register() {
   return (
     <>
-      <HeaderForRegAndLogin title={'Добро пожаловать!'}></HeaderForRegAndLogin>
+      <HeaderForRegAndLogin title={"Добро пожаловать!"}></HeaderForRegAndLogin>
       <main>
-        <form className="form-register">
-          <InputForm
-            type="text"
-            name="name"
-            title="Имя"
-            error="Что-то пошло не так...cccccccccccccccccccc"
-          />
-          <InputForm type="email" name="email" title="E-mail" />
-          <InputForm type="password" name="password" title="Пароль" />
-          <ButtonForForm
-            buttonText={"Зарегистрироваться"}
-            buttonQuestionText={"Уже зарегистрированы?"}
-            buttonLinkText={"Войти"}
-            marginTop={"buttonForForm_register"}
-          />
-        </form>
+        <section>
+          <form className="form-register">
+            <InputForm type="text" name="name" title="Имя" />
+            <InputForm type="email" name="email" title="E-mail" />
+            <InputForm
+              type="password"
+              name="password"
+              title="Пароль"
+              error="Что-то пошло не так..."
+            />
+            <ButtonForForm
+              buttonText={"Зарегистрироваться"}
+              buttonQuestionText={"Уже зарегистрированы?"}
+              buttonLinkText={"Войти"}
+              marginTop={"buttonForForm_register"}
+              link={"/signin"}
+            />
+          </form>
+        </section>
       </main>
     </>
   );

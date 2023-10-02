@@ -7,7 +7,7 @@ function MoviesCardList({filmsLimit, isLoading}) {
   const films = React.useContext(DataFilms);
 
   return (
-    <section className="moviesCardList" aria-label="Карточки с местами">
+    <section className="moviesCardList" aria-label="Карточки с фильмами">
        {isLoading? <Preloader />: films.map((film, i) =>
         i < filmsLimit ? <MoviesCard key={film.id} film={film} /> : null
       )}
