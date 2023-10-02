@@ -1,15 +1,15 @@
-.notfound__error {
+.notfound-error {
   font-size: 140px;
   font-weight: 400;
 	margin: 246px 0 5px;
 	box-sizing: border-box;
 }
-.notfound__message {
+.notfound-message {
   font-size: 16px;
   font-weight: 400;
 	margin: 0 0 184px 0;
 }
-.notfound__link {
+.notfound-link {
 	all: unset;
 	width: 100%;
   color: #4285f4;
@@ -18,31 +18,31 @@
 	cursor: pointer;
 	margin: 0;
 }
-.notfound__link,
-.notfound__message,
-.notfound__error {
+.notfound-link,
+.notfound-message,
+.notfound-error {
 	text-align: center;
 	line-height: normal;
 }
-.notfound__link:hover {
+.notfound-link:hover {
 	opacity: 0.7;
 }
 @media screen and (max-width: 1279px) {
-	.notfound__error {
+	.notfound-error {
 		margin: 408px 0 5px;
 
 	}
 }
 @media screen and (max-width: 767px) {
-	.notfound__error {
+	.notfound-error {
 		margin: 329px 0 10px;
 		font-size: 80px;
 	}
-	.notfound__message {
+	.notfound-message {
 		font-size: 12px;
 		margin: 0 0 284px 0;
 	}
-	.notfound__link {
+	.notfound-link {
 		font-size: 12px;
 	}
 }

@@ -3,7 +3,7 @@
   box-sizing: border-box;
 }
 .aboutMe__title {
-  margin: 110px 0 66px;
+  margin: 111px 0 66px;
   padding-bottom: 23px;
   font-size: 22px;
   font-weight: 400;
@@ -27,7 +27,7 @@
   letter-spacing: -2px;
 }
 .aboutMe__profession {
-  margin: 18px 0 26px;
+  margin: 19px 0 26px;
   font-size: 18px;
   font-weight: 500;
   line-height: 20px; /* 111.111% */
@@ -57,7 +57,7 @@
 
 @media screen and (max-width: 1279px) {
   .aboutMe__title {
-    margin: 90px 0 66px;
+    margin: 92px 0 66px;
   }
   .aboutMe__name {
     font-size: 40px;
@@ -82,8 +82,9 @@
 
 @media screen and (max-width: 767px) {
   .aboutMe__title {
-    margin: 70px 0 60px;
+    margin: 72px 0 60px;
     padding-bottom: 28px;
+    font-size: 18px;
   }
   .aboutMe__image {
     width: 292px;

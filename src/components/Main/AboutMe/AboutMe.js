@@ -4,7 +4,7 @@ import fotoAboutMe from "../../../images/пёсель в очках.jpg";
 function AboutMe() {
   return (
     <section className="aboutMe container" id="AboutMe">
-      <h2 className="aboutMe__title">Студент</h2>
+      <h3 className="aboutMe__title">Студент</h3>
       <div className="aboutMe__info-block">
         <div className="aboutMe__info">
           <p className="aboutMe__name marginNull">Виталий</p>

@@ -4,8 +4,9 @@ import { NavLink, Link } from "react-router-dom";
 function Navigation({ backgroundTheme }) {
   const isLoggedIn = true;
   const [screenWidth, setScreenWidth] = React.useState(window.innerWidth);
-  window.addEventListener("resize", function (e) {
-    setScreenWidth(e.target.outerWidth);
+  window.addEventListener("resize", function () {
+    setScreenWidth(window.innerWidth);
+    // setScreenWidth(e.target.outerWidth);
   });
   const coverRef = React.useRef();
   const menuRef = React.useRef();
@@ -26,7 +27,7 @@ function Navigation({ backgroundTheme }) {
     <>
       {screenWidth > 768 && isLoggedIn && (
         <nav className="navigation ">
-          <div className="navigation__links">
+          <ul className="navigation__links">
             <NavLink
               className={({ isActive }) =>
                 `navigation__link ${isActive ? "navigation__link_active" : ""}`
@@ -43,7 +44,7 @@ function Navigation({ backgroundTheme }) {
             >
               Сохранённые фильмы
             </NavLink>
-          </div>
+          </ul>
 
           <Link className="navigation__account" to="/profile">
             <div className="navigation__account-text">Аккаунт</div>

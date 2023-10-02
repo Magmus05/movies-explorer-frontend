@@ -7,7 +7,7 @@ import ButtonMore from "../ButtonMore/ButtonMore";
 import Footer from "../Footer/Footer";
 //import { Link, useLocation } from "react-router-dom";
 function Movies({isLoading}) {
-  const [filmsLimit, setFilmsLimit] = React.useState(6);
+  const [filmsLimit, setFilmsLimit] = React.useState(5);
 
   function addFilms() {
     setFilmsLimit(filmsLimit + 6);

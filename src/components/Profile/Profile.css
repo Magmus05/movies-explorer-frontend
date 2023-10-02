@@ -11,15 +11,17 @@
   all: unset;
   width: 100%;
   margin: 202px 0 0;
-	cursor: pointer;
+  cursor: pointer;
 }
 .form-profile__button-out {
-  all: unset;
+  display: block;
+  text-decoration: none;
+  text-align: center;
   width: 100%;
   color: #ee3465;
   font-weight: 500;
   margin: 16px 0 0;
-	cursor: pointer;
+  cursor: pointer;
 }
 .form-profile__button-out,
 .form-profile__button,
@@ -27,7 +29,8 @@
   text-align: center;
   line-height: normal;
 }
-.form-profile__button-out:hover, .form-profile__button:hover {
+.form-profile__button-out:hover,
+.form-profile__button:hover {
   opacity: 0.7;
 }
 
@@ -44,16 +47,16 @@
 }
 @media screen and (max-width: 767px) {
   .form-profile {
-    margin: 74px auto 0;
+    margin: 70px auto 0;
   }
   .form-profile__name-user {
     margin: 0 0 80px 0;
   }
   .form-profile__button {
-    margin: 361px 0 0;
+    margin: 364px 0 0;
     font-size: 12px;
   }
-  .form-profile__button-out{
+  .form-profile__button-out {
     font-size: 12px;
   }
 }

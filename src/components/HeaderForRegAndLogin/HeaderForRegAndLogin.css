@@ -3,7 +3,7 @@
   margin: 70px auto 40px;
 }
 .headerForRegAndLogin__title {
-  margin: 40px 0 0;
+  margin: 38px 0 0;
   font-size: 24px;
   font-weight: 500;
   line-height: normal;
@@ -27,7 +27,7 @@
     text-align: center;
   }
   .headerForRegAndLogin__title {
-    margin: 50px auto 0;
+    margin: 47px auto 0;
     width: 260px;
   }
 }

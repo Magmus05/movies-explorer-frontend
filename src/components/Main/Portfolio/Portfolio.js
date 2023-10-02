@@ -4,19 +4,38 @@ import "./Portfolio.css";
 function Portfolio() {
   return (
     <section className="portfolio container" id="AboutMe">
-			<p className="portfolio__title">Портфолио</p>
-			<div className="portfolio__block">
-				<p className="portfolio__link marginNull">Статичный сайт</p>
-				<a href="https://magmus05.github.io/russian-travel/" className="portfolio__arrow" target="_blank" rel="noreferrer">↗</a>
-			</div>
-			<div className="portfolio__block">
-				<p className="portfolio__link marginNull">Адаптивный сайт</p>
-				<a href="https://magmus05.github.io/russian-travel/" className="portfolio__arrow" target="_blank" rel="noreferrer">↗</a>
-			</div>
-			<div className="portfolio__block">
-				<p className="portfolio__link marginNull">Одностраничное приложение</p>
-				<a href="https://magmus05.studen.nomoreparties.co" className="portfolio__arrow" target="_blank" rel="noreferrer">↗</a>
-			</div>
+      <ul className="portfolio__list">
+        <h1 className="portfolio__title">Портфолио</h1>
+        <a
+          className="portfolio__block"
+          href="https://magmus05.github.io/russian-travel/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <p className="portfolio__link marginNull">Статичный сайт</p>
+          <span className="portfolio__arrow">↗</span>
+        </a>
+        <a
+          className="portfolio__block"
+          href="https://magmus05.github.io/russian-travel/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <p className="portfolio__link marginNull">Адаптивный сайт</p>
+          <span className="portfolio__arrow">↗</span>
+        </a>
+        <a
+          className="portfolio__block"
+          href="https://magmus05.studen.nomoreparties.co"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <p className="portfolio__link marginNull">
+            Одностраничное приложение
+          </p>
+          <span className="portfolio__arrow">↗</span>
+        </a>
+      </ul>
     </section>
   );
 }
