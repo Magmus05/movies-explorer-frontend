@@ -8,7 +8,7 @@ function Header({backgroundTheme}) {
     <header className={`header ${backgroundTheme}`}>
       <div className="header__container">
         <Link to="/"><img src={logoHeader} alt="Логотип сайта." className="header__logo" /></Link>
-        <Navigation backgroundTheme={backgroundTheme}></Navigation>
+        <Navigation backgroundTheme={backgroundTheme} ></Navigation>
       </div>
     </header>
   );

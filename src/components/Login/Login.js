@@ -3,16 +3,50 @@ import "./Login.css";
 import InputForm from "../InputForm/InputForm";
 import ButtonForForm from "../ButtonForForm/ButtonForForm";
 import HeaderForRegAndLogin from "../HeaderForRegAndLogin/HeaderForRegAndLogin";
-//import { Link, useLocation } from "react-router-dom";
-function Login() {
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
+
+function Login({ handleLogin }) {
+  const { values, handleChange, errors, resetForm } =
+    useFormAndValidation({
+      email: "",
+      password: "",
+    });
+  function handleSubmitForm(e) {
+    e.preventDefault();
+    handleLogin(values.email, values.password);
+    resetForm();
+  }
+
   return (
     <>
-      <HeaderForRegAndLogin title={"Рады видеть!"}></HeaderForRegAndLogin>
+      <HeaderForRegAndLogin title={"Рады видеть!"} />
       <main>
         <section>
-          <form className="form-login">
-            <InputForm type="email" name="email" title="E-mail" />
-            <InputForm type="password" name="password" title="Пароль" />
+          <form className="form-login" onSubmit={handleSubmitForm}>
+            <InputForm
+              type={"email"}
+              name={"email"}
+              title={"E-mail"}
+              placeholder={"E-mail"}
+              value={values.email}
+              handleChange={(e) => handleChange(e)}
+              error={errors.email}
+              minLength={2}
+              maxLength={40}
+
+            />
+            <InputForm
+              type={"password"}
+              name={"password"}
+              title={"Пароль"}
+              placeholder={"Пароль"}
+              value={values.password}
+              handleChange={(e) => handleChange(e)}
+              error={errors.password}
+              minLength={8}
+              maxLength={40}
+
+            />
             <ButtonForForm
               buttonText={"Войти"}
               buttonQuestionText={"Ещё не зарегистрированы?"}

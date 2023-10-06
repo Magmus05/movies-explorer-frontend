@@ -2,7 +2,7 @@ import "./Techs.css";
 //import { Link, useLocation } from "react-router-dom";
 function Techs() {
   return (
-    <section className="techs container" id="Techs">
+    <section className="techs" id="Techs">
       <h2 className="techs__title">Технологии</h2>
       <h3 className="techs__subtitle">7 технологий</h3>
       <p className="techs__description">

@@ -11,7 +11,7 @@ import Footer from "../Footer/Footer";
 function Main() {
   return (
     <>
-      <Header backgroundTheme={"azure-background"}></Header>
+      <Header backgroundTheme={"azure-background"} ></Header>
       <main>
         <Promo></Promo>
         <NavTab></NavTab>

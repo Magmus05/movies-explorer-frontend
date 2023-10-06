@@ -13,6 +13,10 @@
   margin: 202px 0 0;
   cursor: pointer;
 }
+.form-profile__button:disabled{
+  opacity: 0.5;
+  color: #9c9c9c;
+}
 .form-profile__button-out {
   display: block;
   text-decoration: none;
