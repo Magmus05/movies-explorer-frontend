@@ -1,5 +1,5 @@
-// export const baseUrl = "https://api.magmus-dip.nomoredomainsicu.ru";
-export const baseUrl = "http://localhost:3001";
+export const baseUrl = "https://api.magmus-dip.nomoredomainsicu.ru";
+// export const baseUrl = "http://localhost:3001";
 export function register(name, email, password) {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
@@ -108,7 +108,6 @@ export function getMovies() {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      // Authorization: `Bearer ${'jwt'}`, //`Bearer ${'jwt'}`, если храним локально jwt
     },
   }).then(checkResponse);
 }
@@ -120,7 +119,6 @@ export function deleteMovies(film) {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      // Authorization: `Bearer ${'jwt'}`, //`Bearer ${'jwt'}`, если храним локально jwt
     },
   }).then(checkResponse);
 }

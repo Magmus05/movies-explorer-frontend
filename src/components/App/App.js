@@ -14,6 +14,7 @@ import { moviesApi } from "../../utils/MoviesApi";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { RegexValues } from "../../contexts/RegexValues";
 import { IsLoggedInContext } from "../../contexts/IsLoggedInContext";
+import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
 function App() {
   const [films, setfilms] = React.useState([]);
@@ -29,6 +30,7 @@ function App() {
     React.useState(false);
   const [screenWidth, setScreenWidth] = React.useState(window.innerWidth);
   const [filmsLimit, setFilmsLimit] = React.useState(0);
+  const [isInfoTooltip, setInfoTooltip] = React.useState({ isOpen: false });
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -71,7 +73,6 @@ function App() {
   function receivingSavedFilmFromDatabase() {
     MainApi.getMovies()
       .then((savedFilmsFromDatabase) => {
-        // setLikesId([]);
         savedFilmsFromDatabase.forEach((element) => {
           element.image = { url: element.image.substring(28) };
           element.id = element.movieId;
@@ -107,19 +108,19 @@ function App() {
         setIsLoggedIn(true);
         setCurrentUser(res);
         console.log(res);
-        // setInfoTooltip({
-        //   isOpen: true,
-        //   title: "Вы успешно зарегистрировались!",
-        //   name: "OK",
-        // });
+        setInfoTooltip({
+          isOpen: true,
+          title: "Вы успешно зарегистрировались!",
+          name: "OK",
+        });
       })
       .catch((err) => {
         console.log(`Ошибка ${err.status}, ${err.statusText}`);
-        // setInfoTooltip({
-        //   isOpen: true,
-        //   title: "Что-то пошло не так! Попробуйте ещё раз.",
-        //   name: "Errore",
-        // });
+        setInfoTooltip({
+          isOpen: true,
+          title: "Что-то пошло не так! Попробуйте ещё раз.",
+          name: "Errore",
+        });
       });
   }
 
@@ -132,15 +133,20 @@ function App() {
         receivingSavedFilmFromDatabase();
         savingValuesLocalStorage();
         navigate("/movies", { replace: true });
+        setInfoTooltip({
+          isOpen: true,
+          title: "Вы успешно залогинились!",
+          name: "OK",
+        });
       })
       .catch((err) => {
         console.log(`Ошибка ${err.status}, ${err.statusText}`);
         console.log(err);
-        // setInfoTooltip({
-        //   isOpen: true,
-        //   title: "Что-то пошло не так! Попробуйте ещё раз.",
-        //   name: "Errore",
-        // });
+        setInfoTooltip({
+          isOpen: true,
+          title: "Что-то пошло не так! Попробуйте ещё раз.",
+          name: "Errore",
+        });
       });
   }
 
@@ -160,11 +166,11 @@ function App() {
       })
       .catch((err) => {
         console.log(`Ошибка ${err.status}, ${err.statusText}`);
-        // setInfoTooltip({
-        //   isOpen: true,
-        //   title: `Ошибка ${err.status}, ${err.statusText}`,
-        //   name: "Errore",
-        // });
+        setInfoTooltip({
+          isOpen: true,
+          title: `Ошибка ${err.status}, ${err.statusText}`,
+          name: "Errore",
+        });
       });
   }
 
@@ -186,9 +192,12 @@ function App() {
     console.log(newName, newEmail);
     MainApi.updateProfileData(newName, newEmail)
       .then((newDataProfile) => {
-        console.log(newDataProfile);
+        setInfoTooltip({
+          isOpen: true,
+          title: "Данные успешно обновленны!",
+          name: "OK",
+        });
         setCurrentUser(newDataProfile);
-        // closeAllPopups();
       })
       .catch((err) => console.log(`Ошибка ${err}`));
   }
@@ -254,20 +263,16 @@ function App() {
         .catch((err) => {
           console.log(`Ошибка ${err.status}, ${err.statusText}`);
           console.log(err);
-          // setInfoTooltip({
-          //   isOpen: true,
-          //   title: "Что-то пошло не так! Попробуйте ещё раз.",
-          //   name: "Errore",
-          // });
+          setInfoTooltip({
+            isOpen: true,
+            title: "Что-то пошло не так! Попробуйте ещё раз.",
+            name: "Errore",
+          });
         });
     } else {
       MainApi.createMovies(film) // ------------ создание
         .then((data) => {
           receivingSavedFilmFromDatabase();
-          // setfilms((state)=>state.map)
-          // setFoundFilms((state) =>
-          //   state.map((c) => (c.id === film.id ? {...c, likes : true} : c))
-          // )
           const newFoundFilms = foundFilms.map((c) =>
             c.id === film.id ? { ...c, isLikes: true, _id: data._id } : c
           );
@@ -277,11 +282,11 @@ function App() {
         .catch((err) => {
           console.log(`Ошибка ${err.status}, ${err.statusText}`);
           console.log(err);
-          // setInfoTooltip({
-          //   isOpen: true,
-          //   title: "Что-то пошло не так! Попробуйте ещё раз.",
-          //   name: "Errore",
-          // });
+          setInfoTooltip({
+            isOpen: true,
+            title: "Что-то пошло не так! Попробуйте ещё раз.",
+            name: "Errore",
+          });
         });
     }
   }
@@ -298,11 +303,11 @@ function App() {
       .catch((err) => {
         console.log(`Ошибка ${err.status}, ${err.statusText}`);
         console.log(err);
-        // setInfoTooltip({
-        //   isOpen: true,
-        //   title: "Что-то пошло не так! Попробуйте ещё раз.",
-        //   name: "Errore",
-        // });
+        setInfoTooltip({
+          isOpen: true,
+          title: "Что-то пошло не так! Попробуйте ещё раз.",
+          name: "Errore",
+        });
       });
   }
 
@@ -324,6 +329,11 @@ function App() {
     setSavedFilms(searchFilms);
     setIsSubmited(false);
   }
+
+  function closeAllPopups() {
+    setInfoTooltip({ isOpen: false });
+  }
+
   return (
     <>
       <CurrentUserContext.Provider value={currentUser}>
@@ -397,6 +407,10 @@ function App() {
               ></Route>
               <Route path="*" element={<NotFound />}></Route>
             </Routes>
+            <InfoTooltip
+              isInfoTooltip={isInfoTooltip}
+              onClose={closeAllPopups}
+            />
           </RegexValues.Provider>
         </IsLoggedInContext.Provider>
       </CurrentUserContext.Provider>
