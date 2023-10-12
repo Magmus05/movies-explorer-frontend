@@ -7,7 +7,6 @@ function Navigation({ backgroundTheme }) {
   const isLoggedIn = React.useContext(IsLoggedInContext);
   window.addEventListener("resize", function () {
     setScreenWidth(window.innerWidth);
-    // setScreenWidth(e.target.outerWidth);
   });
   const coverRef = React.useRef();
   const menuRef = React.useRef();

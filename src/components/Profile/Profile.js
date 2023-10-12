@@ -5,10 +5,10 @@ import InputFormForProfile from "./InputFormForProfile/InputFormForProfile";
 import { Link } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
+import { RegexValues } from "../../contexts/RegexValues";
 
 function Profile({ handleExit, handleUpdateProfile }) {
   const currentUser = React.useContext(CurrentUserContext);
-
   const { values, handleChange, errors, setValues, resetForm } =
     useFormAndValidation({
       name: currentUser.name,
@@ -24,6 +24,7 @@ function Profile({ handleExit, handleUpdateProfile }) {
     console.log(values.name, values.email);
     handleUpdateProfile(values.name, values.email, setValues);
     resetForm();
+
   }
   return (
     <>
@@ -43,6 +44,7 @@ function Profile({ handleExit, handleUpdateProfile }) {
               value={values.name}
               handleChange={(e) => handleChange(e)}
               error={errors.name}
+              pattern={RegexValues.name}
             />
             <InputFormForProfile
               type={"email"}
@@ -52,6 +54,7 @@ function Profile({ handleExit, handleUpdateProfile }) {
               value={values.email}
               handleChange={(e) => handleChange(e)}
               error={errors.email}
+              pattern={RegexValues.email}
             />
 
             <button name="buttonForm" disabled={true} className="form-profile__button" type="submit">

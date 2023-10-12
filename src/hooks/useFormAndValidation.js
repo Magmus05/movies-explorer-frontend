@@ -8,10 +8,19 @@ export function useFormAndValidation(inputValues) {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
-    setErrors({ ...errors, [name]: e.target.validationMessage });
+    if (e.target.validationMessage === "Введите данные в указанном формате." && e.target.name === "name") {
+      setErrors({...errors, [name]: "Имя должно содержать только латиницу, кириллицу, пробел или дефис"});
+    } else {
+      setErrors({ ...errors, [name]: e.target.validationMessage });
+    }
+
     setIsValid(e.target.closest("form").checkValidity());
-    const btn = e.target.closest("form").querySelector("[name='buttonForm']")
-    if(e.target.closest("form").checkValidity()){btn.disabled = false} else{btn.disabled = true}
+    const btn = e.target.closest("form").querySelector("[name='buttonForm']");
+    if (e.target.closest("form").checkValidity()) {
+      btn.disabled = false;
+    } else {
+      btn.disabled = true;
+    }
   };
 
   const resetForm = useCallback(

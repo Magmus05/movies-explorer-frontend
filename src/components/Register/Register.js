@@ -4,6 +4,7 @@ import InputForm from "../InputForm/InputForm";
 import ButtonForForm from "../ButtonForForm/ButtonForForm";
 import HeaderForRegAndLogin from "../HeaderForRegAndLogin/HeaderForRegAndLogin";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
+import { RegexValues } from "../../contexts/RegexValues";
 
 function Register({ handleRegistration }) {
   const { values, handleChange, errors, resetForm } = useFormAndValidation({
@@ -35,6 +36,7 @@ function Register({ handleRegistration }) {
               error={errors.name}
               minLength={2}
               maxLength={40}
+              pattern={RegexValues.name}
             />
             <InputForm
               type={"email"}
@@ -46,6 +48,7 @@ function Register({ handleRegistration }) {
               error={errors.email}
               minLength={2}
               maxLength={40}
+              pattern={RegexValues.email}
             />
             <InputForm
               type={"password"}
@@ -57,6 +60,7 @@ function Register({ handleRegistration }) {
               error={errors.password}
               minLength={8}
               maxLength={40}
+              pattern={null}
             />
             <ButtonForForm
               buttonText={"Зарегистрироваться"}

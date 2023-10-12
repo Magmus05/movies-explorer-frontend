@@ -9,7 +9,7 @@ function InputForm({
   value,
   minLength,
   maxLength,
-
+  pattern
 }) {
   return (
     <label className="inputform">
@@ -25,7 +25,7 @@ function InputForm({
         onChange={handleChange}
         required
         id={name}
-
+        pattern={pattern}
       ></input>
       <span className="inputform__span-error">{error}</span>
     </label>

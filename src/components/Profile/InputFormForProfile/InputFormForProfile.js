@@ -7,6 +7,7 @@ function InputFormForProfile({
   error,
   handleChange,
   value,
+  pattern
 }) {
   return (
     <label className="inputFormForProfile">
@@ -22,6 +23,7 @@ function InputFormForProfile({
         onChange={handleChange}
         required=""
         id={name}
+        pattern={pattern}
       />
       <span className="inputFormForProfile__span-error">{error}</span>
     </label>

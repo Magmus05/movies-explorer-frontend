@@ -5,6 +5,13 @@
   box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.08);
   overflow: hidden;
 }
+.moviesCard__link{
+  all: unset;
+  cursor: pointer;
+}
+.moviesCard__link:hover{
+  opacity: 0.7;
+}
 .moviesCard__image {
   margin: 0;
   width: 364px;
@@ -32,6 +39,12 @@
   width: 16px;
   background: url(../../images/likeButtonFilm.svg) center no-repeat;
   cursor: pointer;
+}
+.moviesCard__like_active {
+  background: url(../../images/likeButtonFilmActive.svg) center no-repeat;
+}
+.moviesCard__like_delete {
+  background: url(../../images/buttonFilmDelete.svg) center no-repeat;
 }
 .moviesCard__timeline {
   margin: 17px 0 16px 16px;
