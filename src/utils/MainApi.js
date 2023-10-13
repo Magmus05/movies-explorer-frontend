@@ -1,4 +1,5 @@
 export const baseUrl = "https://api.magmus-dip.nomoredomainsicu.ru";
+
 // export const baseUrl = "http://localhost:3001";
 export function register(name, email, password) {
   return fetch(`${baseUrl}/signup`, {
@@ -31,9 +32,8 @@ export function checkToken() {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
-      // Authorization: `Bearer ${'jwt'}`, //`Bearer ${'jwt'}`, если храним локально jwt
     },
-  }).then(checkResponse);
+  }).then((res) => checkResponse(res));
 }
 
 export function logout() {
@@ -44,7 +44,7 @@ export function logout() {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-  }).then(checkResponse);
+  }).then((res) => checkResponse(res));
 }
 
 export function getUserInformation() {
@@ -55,14 +55,10 @@ export function getUserInformation() {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-  }).then(checkResponse);
+  }).then((res) => checkResponse(res));
 }
 
 export function updateProfileData(newName, newEmail) {
-  console.log({
-    name: newName,
-    email: newEmail,
-  });
   return fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     credentials: "include",
@@ -74,7 +70,7 @@ export function updateProfileData(newName, newEmail) {
       name: newName,
       email: newEmail,
     }),
-  }).then(checkResponse);
+  }).then((res) => checkResponse(res));
 }
 
 export function createMovies(film) {
@@ -98,7 +94,7 @@ export function createMovies(film) {
       nameRU: film.nameRU,
       nameEN: film.nameEN,
     }),
-  }).then(checkResponse);
+  }).then((res) => checkResponse(res));
 }
 
 export function getMovies() {
@@ -109,7 +105,7 @@ export function getMovies() {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-  }).then(checkResponse);
+  }).then((res) => checkResponse(res));
 }
 
 export function deleteMovies(film) {
@@ -120,13 +116,13 @@ export function deleteMovies(film) {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-  }).then(checkResponse);
+  }).then((res) => checkResponse(res));
 }
 
 function checkResponse(res) {
   if (res.ok) {
     return res.json();
   } else {
-    return Promise.reject(res);
+    return Promise.reject(new Error(res));
   }
 }

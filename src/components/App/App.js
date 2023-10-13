@@ -18,7 +18,9 @@ import InfoTooltip from "../InfoTooltip/InfoTooltip";
 
 function App() {
   const [films, setfilms] = React.useState([]);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(
+    false || JSON.parse(localStorage.getItem("isLoggedIn"))
+  );
   const [currentUser, setCurrentUser] = React.useState({});
   const [isSubmited, setIsSubmited] = React.useState(false);
   const [foundFilms, setFoundFilms] = React.useState([]);
@@ -37,6 +39,25 @@ function App() {
     handleTokenCheck();
     //eslint-disable-next-line
   }, []);
+
+  // ----------Проверка токена----------
+  function handleTokenCheck() {
+    MainApi.checkToken()
+      .then((res) => {
+        if (res) {
+          setIsLoggedIn(true);
+          MainApi.getUserInformation()
+            .then((intialData) => {
+              setCurrentUser(intialData);
+              receivingSavedFilmFromDatabase();
+            })
+            .catch((err) => console.log(`Ошибка ${err}`));
+        }
+      })
+      .catch((err) => {
+        console.log(`Ошибка ${err.status}, ${err.statusText}`);
+      });
+  }
 
   React.useEffect(() => {
     window.addEventListener("resize", function () {
@@ -82,11 +103,6 @@ function App() {
       })
       .catch((err) => console.log(`Ошибка ${err}`));
   }
-  // ----------Получение фильмов от нашего серрвера для Сохраненных фильмов
-  React.useEffect(() => {
-    receivingSavedFilmFromDatabase();
-    //eslint-disable-next-line
-  }, []);
 
   // ----------Получение фильмов от API BeatFilm
   React.useEffect(() => {
@@ -102,12 +118,12 @@ function App() {
   function handleRegistration(name, email, password) {
     MainApi.register(name, email, password)
       .then((res) => {
-        receivingSavedFilmFromDatabase();
-        savingValuesLocalStorage();
+        handleTokenCheck();
+        localStorage.setItem("isLoggedIn", true);
         navigate("/movies", { replace: true });
         setIsLoggedIn(true);
         setCurrentUser(res);
-        console.log(res);
+        savingValuesLocalStorage();
         setInfoTooltip({
           isOpen: true,
           title: "Вы успешно зарегистрировались!",
@@ -130,7 +146,7 @@ function App() {
       .then((data) => {
         setIsLoggedIn(true);
         handleTokenCheck();
-        receivingSavedFilmFromDatabase();
+        localStorage.setItem("isLoggedIn", true);
         savingValuesLocalStorage();
         navigate("/movies", { replace: true });
         setInfoTooltip({
@@ -145,30 +161,6 @@ function App() {
         setInfoTooltip({
           isOpen: true,
           title: "Что-то пошло не так! Попробуйте ещё раз.",
-          name: "Errore",
-        });
-      });
-  }
-
-  // ----------Проверка токена----------
-  function handleTokenCheck() {
-    MainApi.checkToken()
-      .then((res) => {
-        if (res) {
-          localStorage.setItem("isLoggedIn", true);
-          setIsLoggedIn(true);
-          MainApi.getUserInformation()
-            .then((intialData) => {
-              setCurrentUser(intialData);
-            })
-            .catch((err) => console.log(`Ошибка ${err}`));
-        }
-      })
-      .catch((err) => {
-        console.log(`Ошибка ${err.status}, ${err.statusText}`);
-        setInfoTooltip({
-          isOpen: true,
-          title: `Ошибка ${err.status}, ${err.statusText}`,
           name: "Errore",
         });
       });
@@ -189,7 +181,6 @@ function App() {
 
   // ----------Изменения профилья----------
   function handleUpdateProfile(newName, newEmail, setValues) {
-    console.log(newName, newEmail);
     MainApi.updateProfileData(newName, newEmail)
       .then((newDataProfile) => {
         setInfoTooltip({
@@ -325,7 +316,6 @@ function App() {
     searchFilms.length === 0
       ? setMessageFoundSavedMovies(true)
       : setMessageFoundSavedMovies(false);
-    console.log(searchFilms);
     setSavedFilms(searchFilms);
     setIsSubmited(false);
   }
@@ -351,7 +341,7 @@ function App() {
                 path="/movies"
                 element={
                   <ProtectedRoute
-                    isLoggedIn={JSON.parse(localStorage.getItem("isLoggedIn"))}
+                    isLoggedIn={isLoggedIn}
                     element={Movies}
                     isSubmited={isSubmited}
                     handleSearch={handleSearch}
@@ -368,11 +358,12 @@ function App() {
                   />
                 }
               ></Route>
+
               <Route
                 path="/saved-movies"
                 element={
                   <ProtectedRoute
-                    isLoggedIn={JSON.parse(localStorage.getItem("isLoggedIn"))}
+                    isLoggedIn={isLoggedIn}
                     element={SavedMovies}
                     isSubmited={isSubmited}
                     savedFilms={savedFilms}
@@ -385,11 +376,12 @@ function App() {
                   />
                 }
               ></Route>
+
               <Route
                 path="/profile"
                 element={
                   <ProtectedRoute
-                    isLoggedIn={JSON.parse(localStorage.getItem("isLoggedIn"))}
+                    isLoggedIn={isLoggedIn}
                     element={Profile}
                     handleExit={handleExit}
                     handleUpdateProfile={handleUpdateProfile}
