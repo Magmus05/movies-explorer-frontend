@@ -16,7 +16,6 @@ function SearchForm({
 
   }
   function handleSearchSubmit(e) {
-    console.log(e);
     e.preventDefault();
     if (e.target[0].value.length <2) {
       alert("Нужно ввести ключевое слово, более 2 символов")

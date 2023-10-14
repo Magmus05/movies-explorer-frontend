@@ -22,7 +22,6 @@ function SavedMovies({
   const [isShortFilmsSavedMovies, setIsShortFilmsSavedMovies] =
     React.useState(false);
   function handleChangeCheckbox(e) {
-    console.log(e.target.checked);
     setIsShortFilmsSavedMovies(e.target.checked);
   }
 
@@ -33,7 +32,6 @@ function SavedMovies({
       setFilmsLimit(filmsLimit + 2);
     }
   }
-console.log(isFoundSavedFilms);
   return (
     <>
       <Header backgroundTheme={"dark-background"}></Header>

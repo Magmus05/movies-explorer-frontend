@@ -219,7 +219,8 @@ function App() {
           title: "Что-то пошло не так! Попробуйте ещё раз.",
           name: "Errore",
         });
-        console.log(`Ошибка ${err}`)});
+        console.log(`Ошибка ${err}`);
+      });
   }
 
   // ----------Обрабтка запроса поиска фильма на странице Фильмы----------
@@ -296,13 +297,10 @@ function App() {
           );
           setFoundFilms(newFoundFilms);
           localStorage.setItem("foundMovies", JSON.stringify(newFoundFilms));
-          console.log(film);
-          console.log(savedFilms);
           savedFilms.push(film);
           const newSavedFilms = savedFilms.map((c) =>
             c.id === film.id ? { ...c, isLikes: true, _id: data._id } : c
           );
-          console.log(newSavedFilms);
           setSavedFilms(newSavedFilms);
         })
         .catch((err) => {
@@ -319,7 +317,6 @@ function App() {
 
   // ----------Удаления фильма на нашем сервере----------
   function handleDeleteFilm(film) {
-    console.log();
     MainApi.deleteMovies(film)
       .then((data) => {
         const newFoundFilms = foundFilms.map((c) =>
