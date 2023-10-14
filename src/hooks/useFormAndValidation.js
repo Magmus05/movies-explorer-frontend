@@ -5,11 +5,18 @@ export function useFormAndValidation(inputValues) {
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e, currentUser) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
-    if (e.target.validationMessage === "Введите данные в указанном формате." && e.target.name === "name") {
-      setErrors({...errors, [name]: "Имя должно содержать только латиницу, кириллицу, пробел или дефис"});
+    if (
+      e.target.validationMessage === "Введите данные в указанном формате." &&
+      e.target.name === "name"
+    ) {
+      setErrors({
+        ...errors,
+        [name]:
+          "Имя должно содержать только латиницу, кириллицу, пробел или дефис",
+      });
     } else {
       setErrors({ ...errors, [name]: e.target.validationMessage });
     }
@@ -20,6 +27,19 @@ export function useFormAndValidation(inputValues) {
       btn.disabled = false;
     } else {
       btn.disabled = true;
+    }
+
+    if (currentUser) {
+      if (e.target.name === "name") {
+        currentUser.name === e.target.value
+          ? (btn.disabled = true)
+          : (btn.disabled = false);
+      }
+      if (e.target.name === "email") {
+        currentUser.email === e.target.value
+          ? (btn.disabled = true)
+          : (btn.disabled = false);
+      }
     }
   };
 

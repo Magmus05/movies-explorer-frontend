@@ -2,7 +2,7 @@ import { useEffect } from "react";
 // кастомные хуки всегда должны начинаться с глагола `use`, чтобы реакт понял, что это хук. Он следит за их вызовами
 export function usePopupClose(isOpen, closePopup) {
   useEffect(() => {
-    if (!isOpen) return; // останавливаем действие эффекта, если попап закрыт
+    if (!isOpen) return  // останавливаем действие эффекта, если попап закрыт
 
     const handleOverlay = (event) => {
       // если есть `popup_opened` в классах блока, значит, кликнули на оверлей

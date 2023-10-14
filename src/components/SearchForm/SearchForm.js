@@ -8,13 +8,15 @@ function SearchForm({
   isShortFilmsMovies,
   handleChangeCheckbox,
 	searchValue,
-  setSearchValue
+  setSearchValue,
+  films
 }) {
   function handleChange(e) {
     setSearchValue(e.target.value);
 
   }
   function handleSearchSubmit(e) {
+    console.log(e);
     e.preventDefault();
     if (e.target[0].value.length <2) {
       alert("Нужно ввести ключевое слово, более 2 символов")
@@ -37,6 +39,7 @@ function SearchForm({
         <button type="submit" className="searchForm__button"></button>
       </label>
       <FilterCheckbox
+      films={films}
         isShortFilmsMovies={isShortFilmsMovies}
         handleChangeCheckbox={handleChangeCheckbox}
       ></FilterCheckbox>

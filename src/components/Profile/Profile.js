@@ -8,8 +8,9 @@ import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import { RegexValues } from "../../contexts/RegexValues";
 
 function Profile({ handleExit, handleUpdateProfile }) {
+  const regexValues = React.useContext(RegexValues)
   const currentUser = React.useContext(CurrentUserContext);
-  const { values, handleChange, errors, setValues, resetForm } =
+  const { values, handleChange, errors, setValues } =
     useFormAndValidation({
       name: currentUser.name,
       email: currentUser.email,
@@ -20,11 +21,9 @@ function Profile({ handleExit, handleUpdateProfile }) {
   }, [setValues, currentUser]);
 
   function handleSubmitForm(e) {
+    e.target.querySelector('button[name="buttonForm"]').disabled = true;
     e.preventDefault();
-    console.log(values.name, values.email);
-    handleUpdateProfile(values.name, values.email, setValues);
-    resetForm();
-
+    handleUpdateProfile(values.name, values.email, setValues, e);
   }
   return (
     <>
@@ -42,9 +41,9 @@ function Profile({ handleExit, handleUpdateProfile }) {
               title={"Имя"}
               placeholder={"Имя"}
               value={values.name}
-              handleChange={(e) => handleChange(e)}
+              handleChange={(e) => handleChange(e, currentUser)}
               error={errors.name}
-              pattern={RegexValues.name}
+              pattern={regexValues.name}
             />
             <InputFormForProfile
               type={"email"}
@@ -52,9 +51,9 @@ function Profile({ handleExit, handleUpdateProfile }) {
               title={"E-mail"}
               placeholder={"E-mail"}
               value={values.email}
-              handleChange={(e) => handleChange(e)}
+              handleChange={(e) => handleChange(e, currentUser)}
               error={errors.email}
-              pattern={RegexValues.email}
+              pattern={regexValues.email}
             />
 
             <button name="buttonForm" disabled={true} className="form-profile__button" type="submit">

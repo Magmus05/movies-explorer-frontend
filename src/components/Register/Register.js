@@ -7,6 +7,7 @@ import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 import { RegexValues } from "../../contexts/RegexValues";
 
 function Register({ handleRegistration }) {
+  const regexValues = React.useContext(RegexValues)
   const { values, handleChange, errors, resetForm } = useFormAndValidation({
     name: "",
     email: "",
@@ -14,10 +15,10 @@ function Register({ handleRegistration }) {
   });
 
   function handleSubmitForm(e) {
+    e.target.querySelector('button[name="buttonForm"]').disabled = true;
     e.preventDefault();
     console.log(values.name, values.email);
-    handleRegistration(values.name, values.email, values.password);
-    resetForm();
+    handleRegistration(values.name, values.email, values.password, resetForm);
   }
 
   return (
@@ -36,7 +37,7 @@ function Register({ handleRegistration }) {
               error={errors.name}
               minLength={2}
               maxLength={40}
-              pattern={RegexValues.name}
+              pattern={regexValues.name}
             />
             <InputForm
               type={"email"}
@@ -48,7 +49,7 @@ function Register({ handleRegistration }) {
               error={errors.email}
               minLength={2}
               maxLength={40}
-              pattern={RegexValues.email}
+              pattern={regexValues.email}
             />
             <InputForm
               type={"password"}

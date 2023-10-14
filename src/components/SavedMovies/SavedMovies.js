@@ -14,13 +14,16 @@ function SavedMovies({
   messageFound,
   screenWidth,
   setFilmsLimit,
-  filmsLimit
+  filmsLimit,
+  foundSavedFilms,
+  isFoundSavedFilms
 }) {
   const [searchValue, setSearchValue] = React.useState("");
-  const [isShortFilmsSavedMovies, setIsShortFilmsSavedMovies] = React.useState(false);
+  const [isShortFilmsSavedMovies, setIsShortFilmsSavedMovies] =
+    React.useState(false);
   function handleChangeCheckbox(e) {
     console.log(e.target.checked);
-    setIsShortFilmsSavedMovies(e.target.checked)
+    setIsShortFilmsSavedMovies(e.target.checked);
   }
 
   function addFilms() {
@@ -30,7 +33,7 @@ function SavedMovies({
       setFilmsLimit(filmsLimit + 2);
     }
   }
-
+console.log(isFoundSavedFilms);
   return (
     <>
       <Header backgroundTheme={"dark-background"}></Header>
@@ -41,11 +44,12 @@ function SavedMovies({
           handleSearch={handleSearchSavedMovies}
           searchValue={searchValue}
           setSearchValue={setSearchValue}
+          films={savedFilms}
         ></SearchForm>
         <MoviesCardList
           filmsLimit={filmsLimit}
           isSubmited={isSubmited}
-          films={savedFilms}
+          films={isFoundSavedFilms ? foundSavedFilms : savedFilms}
           handleClickButton={handleDeleteFilm}
           buttonDeleteSavedMovies={"moviesCard__like_delete"}
           messageFound={messageFound}

@@ -37,6 +37,7 @@ function Movies({
           handleChangeCheckbox={handleChangeCheckbox}
           searchValue={searchValue}
           setSearchValue={setSearchValue}
+          films={foundFilms}
         />
         <MoviesCardList
           filmsLimit={filmsLimit}

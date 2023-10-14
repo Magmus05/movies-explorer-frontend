@@ -26,6 +26,8 @@ function App() {
   const [foundFilms, setFoundFilms] = React.useState([]);
   const [isShortFilmsMovies, setIsShortFilmsMovies] = React.useState(false);
   const [savedFilms, setSavedFilms] = React.useState([]);
+  const [foundSavedFilms, setFoundSavedFilms] = React.useState([]);
+  const [isFoundSavedFilms, setIsFoundSavedFilms] = React.useState(false);
   const [searchValue, setSearchValue] = React.useState("");
   const [messageFoundMovies, setMessageFoundMovies] = React.useState(false);
   const [messageFoundSavedMovies, setMessageFoundSavedMovies] =
@@ -100,6 +102,10 @@ function App() {
           element.isLikes = true;
         });
         setSavedFilms(savedFilmsFromDatabase);
+        localStorage.setItem(
+          "savedFilms",
+          JSON.stringify(savedFilmsFromDatabase)
+        );
       })
       .catch((err) => console.log(`Ошибка ${err}`));
   }
@@ -115,15 +121,23 @@ function App() {
   }, [setfilms]);
 
   // ----------Регистрация пользователя----------
-  function handleRegistration(name, email, password) {
+  function handleRegistration(name, email, password, resetForm) {
     MainApi.register(name, email, password)
       .then((res) => {
-        handleTokenCheck();
-        localStorage.setItem("isLoggedIn", true);
-        navigate("/movies", { replace: true });
-        setIsLoggedIn(true);
-        setCurrentUser(res);
-        savingValuesLocalStorage();
+        MainApi.authorize(email, password)
+          .then((data) => {
+            setIsLoggedIn(true);
+            handleTokenCheck();
+            localStorage.setItem("isLoggedIn", true);
+            savingValuesLocalStorage();
+            navigate("/movies", { replace: true });
+            resetForm();
+          })
+          .catch((err) => {
+            console.log(`Ошибка ${err.status}, ${err.statusText}`);
+            console.log(err);
+          });
+
         setInfoTooltip({
           isOpen: true,
           title: "Вы успешно зарегистрировались!",
@@ -141,7 +155,7 @@ function App() {
   }
 
   // ----------Авторизация пользователя----------
-  function handleLogin(email, password) {
+  function handleLogin(email, password, resetForm) {
     MainApi.authorize(email, password)
       .then((data) => {
         setIsLoggedIn(true);
@@ -149,11 +163,13 @@ function App() {
         localStorage.setItem("isLoggedIn", true);
         savingValuesLocalStorage();
         navigate("/movies", { replace: true });
+
         setInfoTooltip({
           isOpen: true,
           title: "Вы успешно залогинились!",
           name: "OK",
         });
+        resetForm();
       })
       .catch((err) => {
         console.log(`Ошибка ${err.status}, ${err.statusText}`);
@@ -176,7 +192,14 @@ function App() {
           navigate("/", { replace: true });
         }
       })
-      .catch((err) => console.log(`Ошибка ${err.status}, ${err.statusText}`));
+      .catch((err) => {
+        setInfoTooltip({
+          isOpen: true,
+          title: "Что-то пошло не так! Попробуйте ещё раз.",
+          name: "Errore",
+        });
+        console.log(`Ошибка ${err.status}, ${err.statusText}`);
+      });
   }
 
   // ----------Изменения профилья----------
@@ -190,7 +213,13 @@ function App() {
         });
         setCurrentUser(newDataProfile);
       })
-      .catch((err) => console.log(`Ошибка ${err}`));
+      .catch((err) => {
+        setInfoTooltip({
+          isOpen: true,
+          title: "Что-то пошло не так! Попробуйте ещё раз.",
+          name: "Errore",
+        });
+        console.log(`Ошибка ${err}`)});
   }
 
   // ----------Обрабтка запроса поиска фильма на странице Фильмы----------
@@ -245,11 +274,10 @@ function App() {
           const newFoundFilms = foundFilms.map((c) =>
             c.id === film.id ? { ...c, isLikes: false } : c
           );
-
           setFoundFilms(newFoundFilms);
-
           localStorage.setItem("foundMovies", JSON.stringify(newFoundFilms));
-          receivingSavedFilmFromDatabase();
+          const newSavedFilms = savedFilms.filter((c) => c.id !== film.id);
+          setSavedFilms(newSavedFilms);
         })
         .catch((err) => {
           console.log(`Ошибка ${err.status}, ${err.statusText}`);
@@ -263,12 +291,19 @@ function App() {
     } else {
       MainApi.createMovies(film) // ------------ создание
         .then((data) => {
-          receivingSavedFilmFromDatabase();
           const newFoundFilms = foundFilms.map((c) =>
             c.id === film.id ? { ...c, isLikes: true, _id: data._id } : c
           );
           setFoundFilms(newFoundFilms);
           localStorage.setItem("foundMovies", JSON.stringify(newFoundFilms));
+          console.log(film);
+          console.log(savedFilms);
+          savedFilms.push(film);
+          const newSavedFilms = savedFilms.map((c) =>
+            c.id === film.id ? { ...c, isLikes: true, _id: data._id } : c
+          );
+          console.log(newSavedFilms);
+          setSavedFilms(newSavedFilms);
         })
         .catch((err) => {
           console.log(`Ошибка ${err.status}, ${err.statusText}`);
@@ -284,12 +319,20 @@ function App() {
 
   // ----------Удаления фильма на нашем сервере----------
   function handleDeleteFilm(film) {
+    console.log();
     MainApi.deleteMovies(film)
       .then((data) => {
-        setFoundFilms((state) =>
-          state.map((c) => (c.id === film.id ? { ...c, isLikes: false } : c))
+        const newFoundFilms = foundFilms.map((c) =>
+          c.id === film.id ? { ...c, isLikes: false } : c
         );
-        receivingSavedFilmFromDatabase();
+        setFoundFilms(newFoundFilms);
+        localStorage.setItem("foundMovies", JSON.stringify(newFoundFilms));
+        const newSavedFilms = savedFilms.filter((c) => c.id !== film.id);
+        setSavedFilms(newSavedFilms);
+        const newFoundSavedFilms = foundSavedFilms.filter(
+          (c) => c.id !== film.id
+        );
+        setFoundSavedFilms(newFoundSavedFilms);
       })
       .catch((err) => {
         console.log(`Ошибка ${err.status}, ${err.statusText}`);
@@ -304,6 +347,7 @@ function App() {
 
   function handleSearchSavedMovies(searchValue, event) {
     setIsSubmited(true);
+    setIsFoundSavedFilms(true);
     const searchFilms = savedFilms.filter((item) =>
       event.target[2].checked
         ? item.duration < 40
@@ -316,7 +360,7 @@ function App() {
     searchFilms.length === 0
       ? setMessageFoundSavedMovies(true)
       : setMessageFoundSavedMovies(false);
-    setSavedFilms(searchFilms);
+    setFoundSavedFilms(searchFilms);
     setIsSubmited(false);
   }
 
@@ -330,8 +374,8 @@ function App() {
         <IsLoggedInContext.Provider value={isLoggedIn}>
           <RegexValues.Provider
             value={{
-              nameRegex: "^[А-Яа-яёa-zA-Z \\-]+$",
-              emailRegex: "^\\S+@\\S+\\.\\S+$",
+              name: "^[А-Яа-яёa-zA-Z \\-]+$",
+              email: "^\\S+@\\S+\\.\\S+$",
             }}
           >
             <Routes>
@@ -373,6 +417,8 @@ function App() {
                     screenWidth={screenWidth}
                     setFilmsLimit={setFilmsLimit}
                     filmsLimit={filmsLimit}
+                    foundSavedFilms={foundSavedFilms}
+                    isFoundSavedFilms={isFoundSavedFilms}
                   />
                 }
               ></Route>
