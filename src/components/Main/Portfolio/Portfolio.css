@@ -43,7 +43,7 @@
   border-bottom: none;
   padding-bottom: 0;
 }
-.portfolio__arrow:hover {
+.portfolio__block:hover {
   opacity: 0.7;
 }
 

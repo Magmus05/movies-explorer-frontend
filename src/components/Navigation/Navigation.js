@@ -1,12 +1,12 @@
 import React from "react";
 import "./Navigation.css";
 import { NavLink, Link } from "react-router-dom";
+import {IsLoggedInContext} from "../../contexts/IsLoggedInContext"
 function Navigation({ backgroundTheme }) {
-  const isLoggedIn = true;
   const [screenWidth, setScreenWidth] = React.useState(window.innerWidth);
+  const isLoggedIn = React.useContext(IsLoggedInContext);
   window.addEventListener("resize", function () {
     setScreenWidth(window.innerWidth);
-    // setScreenWidth(e.target.outerWidth);
   });
   const coverRef = React.useRef();
   const menuRef = React.useRef();
